@@ -296,98 +296,19 @@ requirejs(['enc'],
     return data
   }
 
-  // let headers = {
-  //   token: "",
-  //   osType: 3,
-  //   version: 999,
-  //   appid: "xj567",
-  //   mac: "21-42-AC-44-BA-DD",
-  //   "content-type": "text/plain"
-  // }
-
-  // let regData = {
-  //   "mobile": "0000000119",
-  //   "userName": "0000000119",
-  //   "password": "12345678",
-  //   "referralCode": "318113",
-  //   "osType": 4,
-  //   "mac": "21-42-AC-44-BA-DD",
-  //   "tokenCode": "7LhsjpupadaGZyIewuL0kB5YtCXjj"
-  // }
-
   // let veData = {
   //   "userName": "0000000041",
   //   "mac": "21-42-AC-44-BA-DD"
   // }
-
-  // let options = {data: regData, headers: headers}
-
-  // let payload = setT(options)
-  // console.log(payload.data)
   var request = require ( 'request' ); 
 
   // let valLink = "https://api.567060.com/api/1.3/public/validateUserName"
   let regLink = "https://api.567060.com/api/1.3/register/addMember"
 
-  // request({
-  //   headers: headers,
-  //   uri: regLink,
-  //   body: payload.data,
-  //   method: 'POST'
-  // }, function (err, res, body) {
-  //   console.log(body);
-  // });
-
-  // let res = "Wd2dm7e0oHUU7tZJpk5b0OOGr630XDNCgO7qvuaV5jZfd3RWnLHsmZjqar0p/L3CcgDvU+YqL80TbuJ/BXtOIbeMmbQ8OokSPAw4ceVpaULrDQ2EUBcqxELn7lPnzZLzzmqx5j6Fcjs7B5jno9wn3BtoWSn+U4eMx7fNYWztYH8="
-  // console.log(ajaxSuccess("Wd2dm7e0oHVnySaRFOYCEifwMW7s2TARzYu7lZM0nF3ZX2YdJyO++TV+NFiFD5HaeQ6LE17UA5vns/yCips7f8qkf9md36J/C0w1170Bl5xXCw08ob8BscwkNehWmDWmS/BOKsSBWNZ3/uHBLfZRLIFQXk2NKmj3QDRgElu4izXH5EOeSBIYCYFQXk2NKmj3QDRgElu4izUBTjvOjEhggVoRRpHoOmmLDRpv1BXsCaIZlBlre7kvwBTc5yvP1Q0eDMAZ58IycUyqdWkooCjhkGLkbxWfmuRW7THwQM7f+80zTyQGClbkdcas0Oo3dsdvN2YxEPYVFNdX2WWSmnyai6yUIjBEHcI5VGoyKRJCCy3vjDfNIT2DbGheHoKvjKo9YqynztO61kbqJzCmui1nFNMRkctE8XqDmR67JYHNAt2QQUI//uU/9FqEz7lQYh+ASdxNmn7thQ7OvGMgZ89C17HhRw6NT1KQRCY+D3b9kVBo5YTP/cVic+fYN8jtIm8VPTS/AvEMXGrElOEMoERTcVmei8k7lDHGD4+Iel29LfJIlTI6qYpzzQ53SgJdUGMXJDfnKcD/rPI="))
 
   let phoneDigit = 10
   let firtNum = 200000
   let lastNum = 300000
-
-  // for (let i = firtNum; i < lastNum; i++) {
-  //   (function(){
-  //     let t = i.toString()
-  //     let phone = String(i).padStart(phoneDigit, '0');
-
-  //     let headers = {
-  //       token: "",
-  //       osType: 3,
-  //       version: 999,
-  //       appid: "xj567",
-  //       mac: "21-42-AC-44-BA-DD",
-  //       "content-type": "text/plain"
-  //     }
-
-  //     let regData = {
-  //       "mobile": "0000000119",
-  //       "userName": "0000000119",
-  //       "password": "12345678",
-  //       "referralCode": "318113",
-  //       "osType": 4,
-  //       "mac": "21-42-AC-44-BA-DD",
-  //       "tokenCode": "7LhsjpupadaGZyIewuL0kB5YtCXjj"
-  //     }
-
-  //     regData["mobile"] = phone
-  //     regData["userName"] = phone
-
-  //     let options = {data: regData, headers: headers}
-  //     let payload = setT(options)
-
-  //     request({
-  //       headers: headers,
-  //       uri: regLink,
-  //       body: payload.data,
-  //       method: 'POST'
-  //     }, function (err, res, body) {
-  //       console.log("================")
-  //       console.log("ongoing: ", phone)
-  //       // console.log(body);
-  //     });
-  //   })(); 
-
-  // }
 
   let arr = []
 
@@ -444,8 +365,6 @@ requirejs(['enc'],
       body: payload.data,
       method: 'POST'
     }, function (err, res, body) {
-      console.log("================")
-      console.log("ongoing: ", phoneNum)
       // console.log(body);
     });
   }
