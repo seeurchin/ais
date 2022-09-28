@@ -6,7 +6,7 @@ requirejs.config({
    nodeRequire: require
 });
 
-requirejs(['hack'],
+requirejs(['enc'],
   function (hack) {
       //by using requirejs config, name1 and name2 are loaded
       //node's require loads the module, if they did not find these
