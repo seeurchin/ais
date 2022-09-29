@@ -296,7 +296,7 @@ requirejs(['enc'],
     return data
   }
 
-  // let res = "Wd2dm7e0oHUU7tZJpk5b0ILC+DdDcwmN5OFY9GeDmMfmvsFBVgTU544ofLWClleBXlWyeK1bj6CfueNbadR7wKPOWU4uwLykQ5nXNaX/RSXBVpfHzJnKvfu7NcaS7SUXpvEF0K6A2LN3z/8+FcEeri6s7B9ZYv00Jpr6d1aVP6jrioAzlT0a5A=="
+  // let res = "Wd2dm7e0oHVnySaRFOYCEifwMW7s2TARBUKdrUZFRInZX2YdJyO++XrIk99mumuteQ6LE17UA5syNLGZ7XGJlFb9cR6Ql0xSdnKdX0lacKJn9JsZQnzA90tEy8zLMOvh5ZLqSwuVlN7iUFMvxY3EgLCsu1qnOSjxyB/LQ035yVCVcnb3Iv3/5q3ZVfXi9ieFan9lcXCYlHBHkc93qXb/3sT1Io11JjS2kHUbBgyXNNIvJlakqRMlFc3LKR+1wvTBiBgnmEMJ9ekL9Iexuu0cHqObCJFUtgcKxn7rbxQVr1RCwKYpxRxJyVUM0lJEoSwtZXYc0WnXOv59dztPEiULgXOBeabAiP0hUsgiSI3xndzTuLLojSirJrCsu1qnOSjxyB/LQ035yVDLyupwZyBE0FMYOege+4e0gGtOf7vhYXCXFlv56piCc8abjEEzcP34+Ap2MLv5efskPI/4t68iRlMcVTBVN1zOsoh7lQmfTBXwN4iBNuZsDh1iW3Q7HW8//rXz0IK5rZqsF/oTmd20zcRHhYyZDfF/"
   // console.log(ajaxSuccess(res))
 
 
@@ -310,17 +310,18 @@ requirejs(['enc'],
   let regLink = "https://api.567060.com/api/1.3/register/addMember"
 
 
-  let phoneDigit = 10
-  let firtNum = 600000
-  let lastNum = 650000
+  let phoneDigit = 4
+  let firtNum = 0
+  let lastNum = 9999
+  let prefix = "xiro"
 
   let arr = []
 
   for (let i = firtNum; i < lastNum; i++) {
       let t = i.toString()
-      arr.push(String(i).padStart(phoneDigit, '0'));
+      arr.push(prefix + String(i).padStart(phoneDigit, '0'));
   }
-  // console.log(arr)
+  console.log(arr)
 
   function processChunk() {
     if (arr.length === 0) {
@@ -346,18 +347,19 @@ requirejs(['enc'],
       osType: 3,
       version: 999,
       appid: "xj567",
-      mac: "21-42-AC-44-BA-DD",
+      mac: "AD-98-A2-D5-1D-93",
       "content-type": "text/plain"
     }
 
     let regData = {
-      "mobile": phoneNum,
+      // "mobile": phoneNum,
       "userName": phoneNum,
       "password": "12345678",
-      "referralCode": "318113",
+      "referralCode": "768632",
       "osType": 4,
-      "mac": "21-42-AC-44-BA-DD",
-      "tokenCode": "7LhsjpupadaGZyIewuL0kB5YtCXjj"
+      "mac": "AD-98-A2-D5-1D-93",
+      // "tokenCode": "7LhsjpupadaGZyIewuL0kB5YtCXjj"
+      "tokenCode": "AzV4jnnAGv4UxczogtoPJJDQ8yZgs"
     }
 
     let options = {data: regData, headers: headers}
