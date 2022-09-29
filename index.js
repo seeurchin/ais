@@ -311,8 +311,8 @@ requirejs(['enc'],
 
 
   let phoneDigit = 10
-  let firtNum = 400000
-  let lastNum = 600000
+  let firtNum = 600000
+  let lastNum = 650000
 
   let arr = []
 
