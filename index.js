@@ -369,7 +369,7 @@ requirejs(['enc'],
       body: payload.data,
       method: 'POST'
     }, function (err, res, body) {
-      // console.log(body);
+      console.log(body);
     });
   }
 
