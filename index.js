@@ -296,6 +296,10 @@ requirejs(['enc'],
     return data
   }
 
+  // let res = "Wd2dm7e0oHUU7tZJpk5b0ILC+DdDcwmN5OFY9GeDmMfmvsFBVgTU544ofLWClleBXlWyeK1bj6CfueNbadR7wKPOWU4uwLykQ5nXNaX/RSXBVpfHzJnKvfu7NcaS7SUXpvEF0K6A2LN3z/8+FcEeri6s7B9ZYv00Jpr6d1aVP6jrioAzlT0a5A=="
+  // console.log(ajaxSuccess(res))
+
+
   // let veData = {
   //   "userName": "0000000041",
   //   "mac": "21-42-AC-44-BA-DD"
@@ -307,8 +311,8 @@ requirejs(['enc'],
 
 
   let phoneDigit = 10
-  let firtNum = 200000
-  let lastNum = 300000
+  let firtNum = 300000
+  let lastNum = 400000
 
   let arr = []
 
