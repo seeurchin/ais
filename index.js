@@ -388,8 +388,8 @@ requirejs(['enc'],
     }
   }
 
-  // processChunk()
-  rechargeWithTor()
+  processChunk()
+  // rechargeWithTor()
 
   function doHeavyStuff(userName) {
     // login()
