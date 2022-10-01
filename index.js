@@ -393,7 +393,7 @@ requirejs(['enc'],
   function doHeavyStuff(userName) {
     // login()
     // changePass()
-    recharge()
+    rechargeWithTor()
   }
 
   function registration(userName) {
