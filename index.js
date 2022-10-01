@@ -366,8 +366,8 @@ requirejs(['enc'],
   }
 
   var tr = require('tor-request');
-  tr.TorControlPort.password = 'giraffe'
-  // var request = require ( 'request' ); 
+  // tr.TorControlPort.password = 'giraffe'
+  var request = require ( 'request' ); 
 
 
   function processChunk() {
@@ -396,10 +396,6 @@ requirejs(['enc'],
     recharge()
   }
 
-  // while (true) {
-  //   recharge()
-  // } 
-
   function registration(userName) {
     mac = genMac()
 
@@ -424,16 +420,6 @@ requirejs(['enc'],
     let options = {data: data, headers: headers, url: regURL, type: "POST"}
     let payload = setT(options)
 
-    //   request({
-  //     headers: headers,
-  //     uri: regURL,
-  //     body: payload.data,
-  //     method: 'POST'
-  //   }, function (err, res, body) {
-  //     if (!body) { console.log("blocked !!!") }
-  //     console.log(body);
-  //   });
-
     tr.request.post({url: regURL, headers: headers, body: payload.data}, function (err, res, body) {
       if (!err && res.statusCode == 200) {
         if (!body) { 
@@ -449,7 +435,7 @@ requirejs(['enc'],
   // registration("coco1116")
 
 
-  function recharge() {
+  function rechargeWithTor() {
 
     let headers = {
       "appid": "xj567",
@@ -481,6 +467,43 @@ requirejs(['enc'],
           let resp = body.replace('"','');
           console.log(ajaxSuccess(resp))
         }
+    });
+  }
+
+  function recharge() {
+    let headers = {
+      "appid": "xj567",
+      "content-type": "application/json",
+      "mac": "74-3A-99-06-C1-0C",
+      "osType": 3,
+      "token": "169431|d63ee4eac3e131258c4081cddf7b607909e285896c7288fcfd180b13d6ef23e5|4",
+      "version": 999
+    }
+
+    let data = {
+      bankId: 30,
+      depositName: "dau tu",
+      "mac": "74-3A-99-06-C1-0C",
+      "payTime": "2022-09-30 10:59:01", 
+      "rechargeTypeId": 11,
+      totalMoney: 100000000,
+    }
+
+    let options = {data: data, headers: headers, url: rechargeURL, type: "POST"}
+    let payload = setT(options)
+
+    request({
+      headers: headers,
+      uri: rechargeURL,
+      body: payload.data,
+      method: 'POST'
+    }, function (err, res, body) {
+      if (!body) { 
+        console.log("blocked !!!") 
+        return 
+      }
+      let resp = body.replace('"','');
+      console.log(ajaxSuccess(resp))
     });
   }
 
