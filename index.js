@@ -291,19 +291,19 @@ requirejs(['enc'],
       var signc=""
       // var menberInfo=JSON.parse($.getItem("user")||"{}").member||{};
       var menberInfo= {
-        aCode: 9,
-        cCode: 6,
-        createTime: 1664524009000,
-        id: 169431,
+        aCode: 8,
+        cCode: 5,
+        createTime: 1664550081000,
+        id: 169470,
         isOnline: 1,
         levelId: 1,
-        nickName: "peter1111",
-        referralCode: "405861",
-        sKey: "NHMXW",
+        nickName: "peter1112",
+        referralCode: "991920",
+        sKey: "9NDWTWV",
         state: 1,
-        token: "169431|d63ee4eac3e131258c4081cddf7b607909e285896c7288fcfd180b13d6ef23e5|4",
+        token: "169470|19b0a72dffe9a94d5db97dc88b363f9786a734b3894d777d5f6ada53f6a36e01|4",
         type: 1,
-        userName: "peter1111"
+        userName: "peter1112"
       }
       // console.log(isMbers)
       // console.log(menberInfo)
@@ -388,7 +388,8 @@ requirejs(['enc'],
     }
   }
 
-  processChunk()
+  // processChunk()
+  rechargeWithTor()
 
   function doHeavyStuff(userName) {
     // login()
@@ -442,17 +443,17 @@ requirejs(['enc'],
       "content-type": "application/json",
       "mac": "74-3A-99-06-C1-0C",
       "osType": 3,
-      "token": "169431|d63ee4eac3e131258c4081cddf7b607909e285896c7288fcfd180b13d6ef23e5|4",
+      "token": "169470|19b0a72dffe9a94d5db97dc88b363f9786a734b3894d777d5f6ada53f6a36e01|4",
       "version": 999
     }
 
     let data = {
-      bankId: 30,
+      bankId: 33,
       depositName: "dau tu",
-      "mac": "74-3A-99-06-C1-0C",
-      "payTime": "2022-09-30 10:59:01", 
-      "rechargeTypeId": 11,
-      totalMoney: 100000000,
+      mac: "63-FA-94-80-93-88",
+      payTime: "2022-10-01 08:30:47",
+      rechargeTypeId: 11,
+      totalMoney: 100000000
     }
 
     let options = {data: data, headers: headers, url: rechargeURL, type: "POST"}
