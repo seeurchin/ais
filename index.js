@@ -362,7 +362,7 @@ requirejs(['enc'],
 
   let phoneDigit = 5
   let firtNum = 1
-  let lastNum = 5
+  let lastNum = 1000
   let prefix = "peter"
 
   let arr = []
@@ -375,7 +375,7 @@ requirejs(['enc'],
     }
   }
   createArr()
-  console.log(arr)
+  // console.log(arr)
 
   function genMac() {
     return "XX-XX-XX-XX-XX-XX".replace(/X/g, function() {
@@ -396,16 +396,13 @@ requirejs(['enc'],
 
   function processChunk() {
     if (arr.length === 0) {
-      // createArr()
-      console.log("================DONE !!!!====================")
-      // processChunk()
       // code that runs after the whole array is executed
     } else {
       // console.log('processing chunk');
       // pick 10 items and remove them from the array
-      const subarr = arr.splice(0, 2)
+      const subarr = arr.splice(0, 100)
       for (const item of subarr) {
-        doHeavyStuff(item)
+        doHeavyStuff()
       }
       // Put the function back in the queue
       setImmediate(processChunk)
@@ -428,7 +425,7 @@ requirejs(['enc'],
     }
   }
 
-  function doHeavyStuff(userName) {
+  function doHeavyStuff() {
     let status = ""
     recharge(function(err, res, body) {
       if (!err && res.statusCode == 200) {
@@ -441,10 +438,10 @@ requirejs(['enc'],
         console.log(resp)
         status = resp.status
 
-
         // console.log(status)
         if (status !== 1) {
           registration()
+          doHeavyStuff()
         }
       }
     })
